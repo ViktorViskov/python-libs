@@ -1,0 +1,16 @@
+{% extends 'base/layout.jinja' %}
+
+{# title block #}
+{% block title %}
+    Not allowed
+{% endblock title %}
+
+{% block body %}
+<div class="container-xxl container-p-y">
+    <div class="misc-wrapper">
+        <h2 class="mb-2 mx-2">Not allowed :(</h2>
+        <p class="mb-4 mx-2">Oops! 😖 You must login to see this page.</p>
+        <a href="/login" class="btn btn-primary">Go to login page</a>
+    </div>
+</div>
+{% endblock body %}

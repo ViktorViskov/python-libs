@@ -1,0 +1,17 @@
+{% extends "base/layout.jinja" %}
+{% block body %}
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        {% include "components/menu.jinja" %}
+        <div class="layout-page">
+            {% include "components/navbar.jinja" %}
+            <div class="content-wrapper">
+                {% block content %}
+
+                {% endblock content %}
+                {% include "components/footer.jinja" %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

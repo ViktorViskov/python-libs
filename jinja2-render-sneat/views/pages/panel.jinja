@@ -1,0 +1,734 @@
+{% extends "components/body.jinja" %}
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-lg-10 mb-4 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Congratulations {{data.user_name}}! 🎉</h5>
+                            {# <p class="mb-4">
+                                You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
+                                your profile.
+                            </p> #}
+
+                            <p class="mb-4">
+                                Message of the day
+                            </p>
+
+                            {# <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a> #}
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                            <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140"
+                                alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                data-app-light-img="illustrations/man-with-laptop-light.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 order-1">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success"
+                                        class="rounded" />
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">KG today</span>
+                            <h3 class="card-title mb-2">$12,628</h3>
+                            {# <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+                                +72.80%</small> #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <h6 class="text-muted">Charts</h6>
+            <div class="nav-align-top">
+                <ul class="nav nav-pills mb-3" role="tablist">
+                    <li class="nav-item">
+                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home"
+                            aria-selected="true">
+                            History
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile"
+                            aria-selected="false">
+                            Fields
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages"
+                            aria-selected="false">
+                            Farms
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                        <!-- KG history -->
+                        <div class="col-2 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+                            <div class="row row-bordered g-0">
+                                <div class="col-md-12">
+                                    <h5 class="card-header m-0 me-2 pb-3">KG history</h5>
+                                    <div id="historyKgChart" class="px-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
+
+                        <!-- KG by field -->
+                        <div class="col-2 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+                            <div class="row row-bordered g-0">
+                                <div class="col-md-12">
+                                    <h5 class="card-header m-0 me-2 pb-3">KG by field</h5>
+                                    <div id="kgFieldChart" class="px-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
+
+                        <!-- KG by farm -->
+                        <div class="col-2 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+                            <div class="row row-bordered g-0">
+                                <div class="col-md-12">
+                                    <h5 class="card-header m-0 me-2 pb-3">KG by farm</h5>
+                                    <div id="kgFarmChart" class="px-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card">
+                <h5 class="card-header">Baskets by person</h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nr</th>
+                                <th>Name</th>
+                                <th>Normal</th>
+                                <th>Normal KG</th>
+                                <th>Yogurt</th>
+                                <th>Yogurt KG</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1 - 23</strong></td>
+                                <td>Albert Cook</td>
+                                <td>12 pcs.</td>
+                                <td>34 kg.</td>
+                                <td>0 pcs.</td>
+                                <td>0 kg.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card">
+                <h5 class="card-header">Baskets by field</h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nr</th>
+                                <th>Name</th>
+                                <th>Normal</th>
+                                <th>Normal KG</th>
+                                <th>Yogurt</th>
+                                <th>Yogurt KG</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1 - 23</strong></td>
+                                <td>Albert Cook</td>
+                                <td>12 pcs.</td>
+                                <td>34 kg.</td>
+                                <td>0 pcs.</td>
+                                <td>0 kg.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <h5 class="card-header">Baskets by farm</h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nr</th>
+                                <th>Name</th>
+                                <th>Normal</th>
+                                <th>Normal KG</th>
+                                <th>Yogurt</th>
+                                <th>Yogurt KG</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1 - 23</strong></td>
+                                <td>Albert Cook</td>
+                                <td>12 pcs.</td>
+                                <td>34 kg.</td>
+                                <td>0 pcs.</td>
+                                <td>0 kg.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let listOfWorkers = []
+    let listOfBaskets = []
+    let listOfFields = []
+    let listOfFarms = []
+    let basketsByWorker = []
+    let basketsByField = []
+    let basketsByFarm = []
+    let basketsToYogurt = []
+    let chartList = {}
+    let selectedDateFrom = ""
+    let selectedDateTo = ""
+    let totalWeight = 0
+    let showTable = false
+    let chartPersons = null
+    let chartFields = null
+    let chartFarms = null
+    let itemsOnPage = 200
+    let currentPage = 0
+
+    async function load() {
+      if (this.selectedDateFrom && this.selectedDateTo) {
+        // loading amount items
+        let itemsToLoad = await this.$root.get(
+          `/api/baskets_by_period/to_load?date_from=${this.selectedDateFrom}&date_to=${this.selectedDateTo}`
+        );
+
+        this.$root.loadingProgress = true;
+        this.listOfBaskets = [];
+        this.$root.$refs.progress.loaded = 0;
+        this.$root.$refs.progress.toLoad = itemsToLoad;
+
+        // loading
+        for (let loaded = 0; loaded < itemsToLoad; loaded += 1000) {
+          this.$root.$refs.progress.loaded = loaded;
+          let response = await this.$root.get(
+            `/api/baskets_by_period?date_from=${this.selectedDateFrom}&date_to=${this.selectedDateTo}&offset=${loaded}`,
+            false
+          );
+          if (response) {
+            this.listOfBaskets.push(...response);
+          }
+        }
+        this.$root.loadingProgress = false;
+
+        // post process data
+        this.dataProcessing();
+
+        // charts
+        this.chartByPerson();
+        this.chartByField();
+        this.chartByFarm();
+        this.chartToYogurt();
+      }
+    }
+
+    async function loadAll() {
+      this.showTable = false;
+      // loading amount items
+      let itemsToLoad = await this.$root.get(
+        `/api/baskets/to_load`
+      );
+
+      this.$root.loadingProgress = true;
+      this.listOfBaskets = [];
+      this.$root.$refs.progress.loaded = 0;
+      this.$root.$refs.progress.toLoad = itemsToLoad;
+
+      // loading
+      for (let loaded = 0; loaded < itemsToLoad; loaded += 1000) {
+        this.$root.$refs.progress.loaded = loaded;
+        let response = await this.$root.get(
+          `/api/baskets?offset=${loaded}`,
+          false
+        );
+        if (response) {
+          this.listOfBaskets.push(...response);
+        }
+      }
+      this.$root.loadingProgress = false;
+
+      // post process data
+      this.dataProcessing();
+
+      // charts
+      this.chartByPerson();
+      this.chartByField();
+      this.chartByFarm();
+      this.chartToYogurt();
+    }
+
+    async function loadWorkers() {
+      let response = await (await fetch("/api/workers")).json();
+      console.log(response)
+      if (response) {
+        this.listOfWorkers = response;
+      }
+    }
+
+    async function loadFields() {
+      let response = await this.$root.get("/api/fields");
+      if (response) {
+        this.listOfFields = response;
+      }
+    }
+
+    async function loadFarms() {
+      let response = await this.$root.get("/api/farms");
+      if (response) {
+        this.listOfFarms = response;
+      }
+    }
+
+    function dataProcessing() {
+      // counting all weight
+      this.totalWeight = 0;
+      for (let b of this.listOfBaskets) {
+        this.totalWeight += b.basket_weight;
+      }
+
+      // create info about every worker with baskets > 0
+      this.basketsByWorker = [];
+      for (let w of this.listOfWorkers) {
+        let workerBaskets = this.listOfBaskets.filter(
+          (b) => b.worker_id === w.id
+        );
+
+        if (workerBaskets.length > 0) {
+          let totalWeightNormal = 0;
+          let totalWeightToYogurt = 0;
+          let basketsNormal = 0;
+          let basketsToYogurt = 0;
+
+          // counting weight for nortmal and yogurt
+          for (let b of workerBaskets) {
+            // count to yogurt
+            if (b.to_yogurt) {
+              totalWeightToYogurt += b.basket_weight;
+              basketsToYogurt += b.basket_weight < 3 ? 0.5 : 1
+
+            // count normal
+            } else {
+              totalWeightNormal += b.basket_weight;
+              basketsNormal += b.basket_weight < 3 ? 0.5 : 1
+            }
+          }
+
+          this.basketsByWorker.push({
+            worker_id: w.id,
+            name: `${w.worker_name} ${w.worker_last_name}`,
+            baskets_normal: basketsNormal,
+            weight_normal: totalWeightNormal,
+            baskets_to_yogurt: basketsToYogurt,
+            weight_to_yogurt: totalWeightToYogurt,
+            // baskets_total: basketsToYogurt + basketsNormal,
+          });
+        }
+      }
+      this.basketsByWorker.sort((a, b) => b.weight - a.weight);
+
+      // create info about every field
+      this.basketsByField = [];
+      for (let f of this.listOfFields) {
+        let fieldBaskets = this.listOfBaskets.filter(
+          (b) => b.field_id === f.id
+        );
+
+        if (fieldBaskets.length > 0) {
+          let fieldTotalWeight = 0;
+
+          for (let b of fieldBaskets) {
+            fieldTotalWeight += b.basket_weight;
+          }
+
+          this.basketsByField.push({
+            id: f.id,
+            farm_id: f.farm_id,
+            name: f.field_name,
+            weight: fieldTotalWeight,
+            baskets: fieldBaskets.length,
+          });
+        }
+      }
+      this.basketsByField.sort((a, b) => b.weight - a.weight);
+
+      // create info about every farm
+      this.basketsByFarm = [];
+      for (let farm of this.listOfFarms) {
+        let farmFields = this.basketsByField.filter(
+          (f) => f.farm_id == farm.id
+        );
+
+        if (farmFields.length > 0) {
+          let farmTotalWeight = 0;
+          let baskets = 0;
+
+          for (let f of farmFields) {
+            farmTotalWeight += f.weight;
+            baskets += f.baskets;
+          }
+
+          this.basketsByFarm.push({
+            id: farm.id,
+            name: farm.farm_name,
+            weight: farmTotalWeight,
+            baskets: baskets,
+          });
+        }
+      }
+      this.basketsByFarm.sort((a, b) => b.weight - a.weight);
+    }
+
+    function chartByPerson() {
+      let labels = [];
+      let weight = [];
+      let totalWeight = 0;
+
+      // data preparing
+      for (let item of this.basketsByWorker) {
+        labels.push(item.name);
+        weight.push(item.weight_normal);
+        totalWeight += item.weight_normal;
+      }
+      this.createChart(
+        "chartByPerson",
+        labels,
+        weight,
+        `Total ${totalWeight} kg.`
+      );
+    }
+
+    function chartByField() {
+      let labels = [];
+      let weight = [];
+      let totalWeight = 0;
+
+      // data preparing
+      for (let item of this.basketsByField) {
+        labels.push(item.name);
+        weight.push(item.weight);
+        totalWeight += item.weight;
+      }
+      this.createChart(
+        "chartByField",
+        labels,
+        weight,
+        `Total ${totalWeight} kg.`
+      );
+    }
+
+    function chartByFarm() {
+      let labels = [];
+      let weight = [];
+      let totalWeight = 0;
+
+      // data preparing
+      for (let item of this.basketsByFarm) {
+        labels.push(item.name);
+        weight.push(item.weight);
+        totalWeight += item.weight;
+      }
+      this.createChart(
+        "chartByFarm",
+        labels,
+        weight,
+        `Total ${totalWeight} kg.`
+      );
+    }
+
+    function chartToYogurt() {
+      let labels = [];
+      let weight = [];
+      let totalWeight = 0;
+
+      // data preparing
+      for (let item of this.basketsByWorker) {
+        labels.push(item.name);
+        weight.push(item.weight_to_yogurt);
+        totalWeight += item.weight_to_yogurt;
+      }
+      this.createChart(
+        "chartToYogurt",
+        labels,
+        weight,
+        `Total ${totalWeight} kg.`
+      );
+    }
+
+    function createChart(tagId, labels, datas, title) {
+      if (this.chartList[tagId]) {
+        this.chartList[tagId].destroy();
+      }
+
+      // canvas object
+      const ctx = document.getElementById(tagId);
+
+      // generate data
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+            data: datas,
+            label: "Kg",
+          },
+        ],
+      };
+
+      this.chartList[tagId] = new Chart(ctx, {
+        type: "doughnut",
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+              position: "top",
+            },
+            title: {
+              display: true,
+              text: title,
+            },
+          },
+          animation: {
+            duration: 0,
+          },
+        },
+      });
+    }
+
+    function safeGetKey(obj, key) {
+      return obj ? obj[key] : "";
+    }
+
+    function sortList(list, by) {
+      let direction = 0;
+
+      // define sorting
+
+      // special for time sorting
+      if (by == "created_at") {
+        let first = new Date(list[0][by]).getTime();
+        let last = new Date(list[list.length - 1][by]).getTime();
+        direction = first - last;
+
+        if (direction >= 0) {
+          list.sort(
+            (a, b) => new Date(a[by]).getTime() - new Date(b[by]).getTime()
+          );
+        } else {
+          list.sort(
+            (a, b) => new Date(b[by]).getTime() - new Date(a[by]).getTime()
+          );
+        }
+
+        return list;
+      }
+      // special for time sorting
+      else {
+        direction = list[0][by] - list[list.length - 1][by];
+      }
+
+      if (direction >= 0) {
+        list.sort((a, b) => a[by] - b[by]);
+      } else {
+        list.sort((a, b) => b[by] - a[by]);
+      }
+
+      return list;
+    }
+
+    function generateBasketsXLSX() {
+      // data preparing
+      let dataObj = [];
+
+      for (let basket of this.listOfBaskets) {
+        dataObj.push({
+          "Worker number": basket.worker_id,
+          "Basket number": basket.basket_number,
+          "Worker name":
+            this.safeGetKey(
+              this.listOfWorkers.find((w) => w.id === basket.worker_id),
+              "worker_name"
+            ) +
+            " " +
+            this.safeGetKey(
+              this.listOfWorkers.find((w) => w.id === basket.worker_id),
+              "worker_last_name"
+            ),
+          Field: this.safeGetKey(
+            this.listOfFields.find((f) => f.id === basket.field_id),
+            "field_name"
+          ),
+          Time: new Date(basket.created_at),
+          "To yogurt": basket.to_yogurt,
+        });
+      }
+
+      // generating
+      this.$root.generateXLSX(dataObj, "Baskets");
+    }
+
+    function generateBasketsByPersonXLSX() {
+      let toXLSX = []
+      for (let worker of this.basketsByWorker) {
+        let workerToXLSX = {
+          "Number": worker.worker_id,
+          "Name": worker.name,
+          "Normal": worker.baskets_normal,
+          "Normal KG": worker.weight_normal,
+          "Yogurt": worker.baskets_to_yogurt,
+          "Yogurt KG": worker.weight_to_yogurt,
+        }
+        toXLSX.push(workerToXLSX)
+      }
+      this.$root.generateXLSX(toXLSX, "Baskets by person");
+    }
+
+    function generateBySelectedPerson(id, name) {
+      let personBaskets = this.listOfBaskets.filter((b) => b.worker_id === id);
+
+      // sorting baskets by date
+      let basketsByDate = {};
+      for (let someBasket of personBaskets) {
+        let basketDate = new Date(someBasket.created_at);
+        let basketDateKey = `${basketDate.getMonth() + 1}-${basketDate.getDate()}-${basketDate.getFullYear()}`;
+
+        if (basketsByDate[basketDateKey] === undefined) {
+          basketsByDate[basketDateKey] = [];
+        }
+
+        basketsByDate[basketDateKey].push(someBasket);
+      }
+
+      // data preparing
+      let dataObj = [];
+
+      for (let date in basketsByDate) {
+        dataObj.push({
+          Date: new Date(date),
+          "Worker number": id,
+          "Worker name":
+            this.safeGetKey(
+              this.listOfWorkers.find((w) => w.id === id),
+              "worker_name"
+            ) +
+            " " +
+            this.safeGetKey(
+              this.listOfWorkers.find((w) => w.id === id),
+              "worker_last_name"
+            ),
+
+          "Total baskets": basketsByDate[date].length,
+          Normal: basketsByDate[date].filter((b) => !b.to_yogurt).length,
+          "To yogurt": basketsByDate[date].filter((b) => b.to_yogurt).length,
+        });
+      }
+
+      this.$root.generateXLSX(dataObj, `${name} baskets`);
+    }
+
+    function prevPage() {
+      if (this.currentPage > 0) {
+        this.currentPage--;
+      }
+    }
+
+    function nextPage() {
+      let nextPage = this.currentPage + 1
+      let items = this.listOfBaskets.slice(nextPage * this.itemsOnPage, nextPage * this.itemsOnPage + this.itemsOnPage)
+      if (items.length > 0){
+        this.currentPage++;
+      }
+    }
+
+    async function autoStart() {
+        //  set current time and load
+        let today = new Date();
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        selectedDateFrom = today.toISOString().substring(0, 10);
+        selectedDateTo = tomorrow.toISOString().substring(0, 10);
+        await loadWorkers();
+        await loadFields();
+        await loadFarms();
+        await load();
+    } 
+
+    autoStart()
+
+</script>
+{% endblock content %}
