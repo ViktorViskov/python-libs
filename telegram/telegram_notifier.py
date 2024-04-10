@@ -34,12 +34,15 @@ class TelegramNotifier:
         except RequestException as e:
             print(f"Failed to send message. Exception: {e}")
 
-    def send_image(self, image: bytes) -> None:
+    def send_image(self, image: bytes, text:str = '') -> None:
         """Method to send image"""
         url = f'{self.base_url}/sendPhoto'
 
         files = {"photo": image}
-        data = {"chat_id": self.chat_id}
+        data = {
+            "chat_id": self.chat_id,
+            "caption": text,
+        }
 
         try:
             post(url, data=data, files=files, timeout=15)
